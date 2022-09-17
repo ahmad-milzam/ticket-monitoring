@@ -120,14 +120,14 @@ a.link.link-active {
 .total-ticket {
     height: 50px;
     width: 50px;
-    background-color: #c7acac;
+    background-color: #3C4D61;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.2em;
     font-weight: 900;
-    color: #000;
+    color: #fff;
 }
 
 /* slider-nime */
@@ -136,10 +136,9 @@ a.link.link-active {
 }
 .gallery-cell {
     width: 30%;
-    height: 250px;
+    height: 180px;
     margin-right: 20px;
-    background: rgb(210,175,149);
-    background: radial-gradient(circle, rgba(210,175,149,1) 0%, rgba(159,104,70,1) 100%);
+    background:linear-gradient(135deg, #17ead9 0%,#6078ea 100%);
     counter-increment: gallery-cell;
     border-radius: 20px;
     position: relative;
@@ -151,7 +150,7 @@ a.link.link-active {
     left: 0;
     right: 0;
     height: 80%;
-    background: linear-gradient(180deg, rgba(0,0,0,0), black);
+    background: (180deg, rgba(0,0,0,0), black);
     border-radius: 20px;
 }
 .gallery-cell img {
@@ -164,9 +163,9 @@ a.link.link-active {
     position: absolute;
     /* text-align: center; */
     color: #fff;
-    left: 2.5em;
+    left: 1.8em;
     /* right: 0; */
-    top: 8.5em;
+    top: 4.8em;
     z-index: 9999;
 }
 .flickity-page-dots {
