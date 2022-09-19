@@ -1,5 +1,5 @@
 var text = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis natus a veniam doloremque ipsa.";
-var result = text.substring(0, 50) + '...'; // gives "foo b..."
+var result = text.substring(0, 60) + '...'; // gives "foo b..."
 var elems = document.getElementsByClassName("title-ticket");
 
 for(var i = 0; i < elems.length; i++) {
