@@ -4,6 +4,7 @@
 
 html {
     overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .main-content::before {
@@ -84,6 +85,26 @@ html {
     align-items: center;
 }
 
+.group-count-ticket-asap {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    height: 90vh;
+    margin-top: 2em;
+    align-items: center;
+    overflow-y: auto;
+}
+
+.group-count-ticket-wait {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    height: 90vh;
+    margin-top: 2em;
+    align-items: center;
+    overflow-y: auto;
+}
+
 .contain-count {
     width: 100%;
     max-width: 400px;
@@ -95,11 +116,47 @@ html {
     padding: 25px;
 }
 
+.contain-count-asap {
+    width: 100%;
+    max-width: 400px;
+    height: 205px;
+    margin: 20px;
+    border-radius: 20px;
+    background: #F90000;
+    padding: 25px;
+}
+
+.contain-count-wait {
+    width: 100%;
+    max-width: 400px;
+    height: 205px;
+    margin: 20px;
+    border-radius: 20px;
+    background: #48ABD9;
+    padding: 25px;
+}
+
+.contain-count-warning {
+    width: 100%;
+    max-width: 400px;
+    height: 205px;
+    margin: 20px;
+    border-radius: 20px;
+    background: #F9A500;
+    padding: 25px;
+}
+
 .title-category-ticket {
     display: flex;
     color: #fff;
     font-weight: 500;
     font-size: 28px;
+}
+
+.title-category-ticket .category-ticket-waiting {
+    color: #FFFF;
+    font-size: 18px;
+    font-weight: 700;
 }
 
 .arrow-button {
@@ -124,3 +181,32 @@ html {
     margin-bottom: 4px;
     font-size: 14px;
 }
+
+.content-wait {
+    width: 40px;
+    height: 400px;
+}
+
+/* width */
+.group-count-ticket-wait::-webkit-scrollbar {
+    width: 5px;
+    height: 8px;
+}
+
+/* Handle */
+.group-count-ticket-wait::-webkit-scrollbar-thumb {
+    /* background: red;  */
+    background: rgb(61, 60, 60);
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.group-count-ticket-wait::-webkit-scrollbar-thumb:hover {
+    background: #b30000; 
+}
+
+@media only screen and (max-width: 600px) {
+    html {
+      overflow-y: auto;
+    }
+  }
