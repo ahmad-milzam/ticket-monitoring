@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+    <div id="detail-gio">
+      <div id="departement"></div>
+      <div id="open"></div>
+    </div>
+  <body>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script>
+      $( document ).ready(function() {
+          // console.log( "ready!" );
+          var socket = new WebSocket("ws://websocket.ngulik.my.id/ws");
+      socket.onopen = function (e) {
+        console.log("Connection open");
+        socket.send("GET");
+      };
+
+      socket.onmessage = function (event) {
+        console.log(event.data);
+        let data = JSON.parse(event.data);
+        console.log(data);
+
+        // $('#departement').text(data.total_tickets.gio.departement);
+
+        ticket('#open', data.total_tickets.gio.open);
+        ticket('#departement', data.total_tickets.gio.departement);
+      };
+
+      socket.onclose = function (event) {
+        if (event.wasClean) {
+          alert(
+            `[close] Connection closed cleanly, code=${event.code} reason=${event.reason}`
+          );
+        } else {
+          // e.g. server process killed or network down
+          // event.code is usually 1006 in this case
+          console.log("[close] Connection died");
+        }
+      };
+
+      socket.onerror = function (error) {
+        console.log(error.message);
+      };
+
+      function ticket(id, ticket){
+        $(id).text(ticket);
+      }
+
+      });
+
+      
+    </script>
+  </body>
+</html>
