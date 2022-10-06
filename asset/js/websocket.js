@@ -88,23 +88,19 @@ $(document).ready(function () {
     let now = Math.floor(Date.now() / 1000);
 
     // loop and check if waiting response exist
-    console.log("checking");
     waiting_responses.forEach((waiting_response) => {
       // get and detach existing element
       let ticket = $("#" + waiting_response.id_ticket).detach();
 
       let difference = now - waiting_response.timestamp;
       console.log(difference);
-      if (difference >= 15) {
-        console.log("red");
+      if (difference >= 900) {
         move(".group-count-ticket-asap", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-asap");
-      } else if (difference >= 10) {
-        console.log("orange");
+      } else if (difference >= 600) {
         move(".group-ticket-warn", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-warning");
       } else {
-        console.log("blue");
         move(".group-ticket-new", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-wait");
       }
