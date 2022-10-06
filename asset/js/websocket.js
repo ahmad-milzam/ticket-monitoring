@@ -137,8 +137,6 @@ $(document).ready(function () {
           colorTicket = "contain-count-wait";
         }
 
-        console.log(timeTicket);
-
         $(timeTicket).append(`
                 <div class="${colorTicket}" id="${waiting_response.id_ticket}">
                     <!-- <div class="content-wait"></div> -->
