@@ -91,16 +91,20 @@ $(document).ready(function () {
     console.log("checking");
     waiting_responses.forEach((waiting_response) => {
       // get and detach existing element
-      let ticket = $(waiting_response.id_ticket).detach();
+      let ticket = $("#" + waiting_response.id_ticket).detach();
 
       let difference = now - waiting_response.timestamp;
-      if (difference >= 900) {
+      console.log(difference);
+      if (difference >= 15) {
+        console.log("red");
         move(".group-count-ticket-asap", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-asap");
-      } else if (difference >= 600) {
+      } else if (difference >= 10) {
+        console.log("orange");
         move(".group-ticket-warn", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-warning");
       } else {
+        console.log("blue");
         move(".group-ticket-new", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-wait");
       }
