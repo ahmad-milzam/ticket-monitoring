@@ -177,8 +177,21 @@ html {
 .arrow-button {
     width: 40px;
     height: 40px;
-    background: #3EFC68;
+    background-image: url(../image/subtrac-nobg.png);
+    background-color: #3EFC68;
+    background-repeat: no-repeat;
+    background-size: 50%;
+    background-position: center;
     border-radius: 8px;
+    cursor: pointer;
+}
+
+.arrow-button:hover {
+    /* transform: rotate(180deg); */
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+    transform: rotate(180deg);
 }
 
 .line-count-ticket {
@@ -258,21 +271,29 @@ html {
 }
 
 /* width */
-.group-count-ticket-wait::-webkit-scrollbar {
+.group-count-ticket-wait::-webkit-scrollbar,
+.group-count-ticket-asap::-webkit-scrollbar {
     width: 5px;
     height: 8px;
 }
 
 /* Handle */
-.group-count-ticket-wait::-webkit-scrollbar-thumb {
+.group-count-ticket-wait::-webkit-scrollbar-thumb,
+.group-count-ticket-asap::-webkit-scrollbar-thumb {
     /* background: red;  */
     background: rgb(61, 60, 60);
     border-radius: 10px;
 }
 
 /* Handle on hover */
-.group-count-ticket-wait::-webkit-scrollbar-thumb:hover {
+.group-count-ticket-wait::-webkit-scrollbar-thumb:hover,
+.group-count-ticket-asap::-webkit-scrollbar-thumb:hover {
     background: #b30000; 
+}
+
+@keyframes rotate{
+    from{ transform: rotate(0deg); }
+    to{ transform: rotate(180deg); }
 }
 
 @media only screen and (max-width: 600px) {
