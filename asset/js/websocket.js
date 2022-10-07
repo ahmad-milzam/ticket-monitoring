@@ -140,9 +140,8 @@ $(document).ready(function () {
         $(timeTicket).append(`
                 <div class="${colorTicket}" id="${waiting_response.id_ticket}">
                     <!-- <div class="content-wait"></div> -->
-                    <div class="asap-head-ticket d-flex flex-wrap align-items-center">
+                    <div class="asap-head-ticket d-flex justify-content-center align-items-center">
                         <div class="asap-title-ticket"><img src="./asset/image/vector-asap.png" alt="" class="mr-1">GIO</div>
-                        <button class="ml-auto ignore-ticket"><img src="./asset/image/close-ingnore.png" alt=""></button>
                     </div>
                     <div class="status-asap-ticket d-flex flex-wrap align-items-center mt-2">
                         <div class="status-asap">${
