@@ -75,7 +75,7 @@ html {
     font-weight: 500;
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 1.5em;
     margin-bottom: 30px;
 }
 
@@ -293,6 +293,18 @@ html {
     background: #b30000; 
 }
 
+.danger-count {
+    color: #F83007;
+}
+
+.warning-count {
+    color: #EB8424;
+}
+
+.safe-count {
+    color: #ffffff;
+}
+
 @keyframes rotate{
     from{ transform: rotate(0deg); }
     to{ transform: rotate(180deg); }
@@ -304,6 +316,7 @@ html {
     }
     .title-contain-ticket {
         font-size: 24px;
+        margin-top: 20px;
     }
     /* .subject-asap {
         font-size: 16px;
