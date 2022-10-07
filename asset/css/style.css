@@ -95,6 +95,7 @@ html {
     align-items: center;
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 5em;
 }
 
 .group-count-ticket-wait {
@@ -106,6 +107,7 @@ html {
     /* align-items: center; */
     overflow-y: auto;
     overflow-x: hidden;
+    padding-bottom: 5em;
 }
 
 .group-ticket-warn {
