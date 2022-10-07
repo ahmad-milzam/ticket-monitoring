@@ -60,6 +60,7 @@ html {
     /* background: rgb(133, 0, 0); */
     width: 100%;
     height: 100vh;
+    margin-top: 0;
 }
 
 .warning-status {
@@ -93,6 +94,7 @@ html {
     margin-top: 2em;
     align-items: center;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .group-count-ticket-wait {
@@ -103,6 +105,7 @@ html {
     /* margin-top: 2em; */
     /* align-items: center; */
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .group-ticket-warn {
@@ -299,5 +302,20 @@ html {
 @media only screen and (max-width: 600px) {
     html {
       overflow-y: auto;
+    }
+    .title-contain-ticket {
+        font-size: 24px;
+    }
+    /* .subject-asap {
+        font-size: 16px;
+    } */
+    .contain-count-warning,
+    .contain-count-wait,
+    .contain-count-asap {
+        height: 250px;
+    }
+    .danger-status,
+    .warning-status {
+        margin-top: 5em;
     }
   }
