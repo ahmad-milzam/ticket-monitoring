@@ -27,7 +27,6 @@ $(document).ready(function () {
 
     socket.onmessage = function (event) {
       let data = JSON.parse(event.data);
-      console.log(data);
 
       // empty all child
       $(".group-count-ticket-asap").empty();
@@ -36,17 +35,17 @@ $(document).ready(function () {
 
       // $('#departement').text(data.total_tickets.gio.departement);
 
-      ticket("#open-gio", data.total_tickets.gio.open);
-      ticket("#onprogress-gio", data.total_tickets.gio.on_progress);
-      ticket("#onhold-gio", data.total_tickets.gio.on_hold);
+      ticket("#gio-count-open","#open-gio", data.total_tickets.gio.open);
+      ticket("#gio-count-onprogress","#onprogress-gio", data.total_tickets.gio.on_progress);
+      ticket("#gio-count-onhold","#onhold-gio", data.total_tickets.gio.on_hold);
 
-      ticket("#open-neo", data.total_tickets.neo.open);
-      ticket("#onprogress-neo", data.total_tickets.neo.on_progress);
-      ticket("#onhold-neo", data.total_tickets.neo.on_hold);
+      ticket("#neo-count-open","#open-neo", data.total_tickets.neo.open);
+      ticket("#neo-count-onprogress","#onprogress-neo", data.total_tickets.neo.on_progress);
+      ticket("#neo-count-onhold","#onhold-neo", data.total_tickets.neo.on_hold);
 
-      ticket("#open-whatsaap", data.total_tickets.whatsaap.open);
-      ticket("#onprogress-whatsaap", data.total_tickets.whatsaap.on_progress);
-      ticket("#onhold-whatsaap", data.total_tickets.whatsaap.on_hold);
+      ticket("#wa-count-open","#open-whatsaap", data.total_tickets.whatsaap.open);
+      ticket("#wa-count-onprogress","#onprogress-whatsaap", data.total_tickets.whatsaap.on_progress);
+      ticket("#wa-count-onhold","#onhold-whatsaap", data.total_tickets.whatsaap.on_hold);
 
       waiting(data.waiting_responses);
       // checkInterval = setInterval(checkTicket, 5000);
@@ -70,8 +69,18 @@ $(document).ready(function () {
     };
   }
 
-  function ticket(id, ticket) {
-    $(id).text(ticket);
+  function ticket(parent, id, ticket) {
+
+    if(ticket > 9) {
+      $(parent).addClass("danger-count");
+      $(id).text(ticket);
+    }else if (ticket >= 6) {
+      $(parent).addClass("warning-count");
+      $(id).text(ticket);
+    }else {
+      $(id).text(ticket);
+    }
+
   }
 
   function checkTicket() {
@@ -93,7 +102,6 @@ $(document).ready(function () {
       let ticket = $("#" + waiting_response.id_ticket).detach();
 
       let difference = now - waiting_response.timestamp;
-      console.log(difference);
       if (difference >= 900) {
         move(".group-count-ticket-asap", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-asap");
@@ -108,7 +116,6 @@ $(document).ready(function () {
   }
 
   function waiting(waiting_responses) {
-    // console.log(warn);
 
     if (waiting_responses != null) {
       // save data to session storage
@@ -141,7 +148,7 @@ $(document).ready(function () {
                 <div class="${colorTicket}" id="${waiting_response.id_ticket}">
                     <!-- <div class="content-wait"></div> -->
                     <div class="asap-head-ticket d-flex justify-content-center align-items-center">
-                        <div class="asap-title-ticket"><img src="./asset/image/vector-asap.png" alt="" class="mr-1">GIO</div>
+                        <div class="asap-title-ticket"><img src="./asset/image/vector-asap.png" alt="" class="mr-1">${waiting_response.departement}</div>
                     </div>
                     <div class="status-asap-ticket d-flex flex-wrap align-items-center mt-2">
                         <div class="status-asap">${
