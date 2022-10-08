@@ -21,7 +21,7 @@ func main() {
 	helper.PanicIfError(err)
 
 	server := http.Server{
-		Addr:    "0.0.0.0:8888",
+		Addr:    "0.0.0.0:80",
 		Handler: middleware.NewAuthMiddleware(router, client, env),
 	}
 
