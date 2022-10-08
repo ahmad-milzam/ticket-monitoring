@@ -13,7 +13,7 @@ $(document).ready(function () {
     $(child).addClass(newColor);
   }
 
-  var socket = new WebSocket("wss://api.ngulik.my.id/wss");
+  var socket = new WebSocket("wss://monitoring.giostaging.com/wss");
 
   connectWebsocket(socket);
 
@@ -59,7 +59,7 @@ $(document).ready(function () {
       } else {
         // e.g. server process killed or network down
         // event.code is usually 1006 in this case
-        console.log("[close] Connection died");
+        alert("[close] Connection died");
       }
       connectWebsocket(socket);
     };
