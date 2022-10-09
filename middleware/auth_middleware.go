@@ -1,6 +1,7 @@
 package middleware
 
 import (
+	"log"
 	"net/http"
 	"net/url"
 
@@ -25,27 +26,32 @@ func NewAuthMiddleware(handler http.Handler, client *req.Client, env env.MyEnv) 
 }
 
 func (middleware *AuthMiddleware) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	token := url.QueryEscape(r.URL.Query().Get("token"))
 
-	if token == "" {
-		// w.Header().Add("Content-Type", "application/json")
-		w.WriteHeader(http.StatusUnauthorized)
-		helper.WriteToResponseBody(w, "Unauthorized!")
-		return
-	}
+	log.Println("path", r.URL.Path)
+	if r.URL.Path == "/" {
+		token := url.QueryEscape(r.URL.Query().Get("token"))
+		if token == "" {
+			// w.Header().Add("Content-Type", "application/json")
+			w.WriteHeader(http.StatusUnauthorized)
+			helper.WriteToResponseBody(w, "Unauthorized!")
+			return
+		}
+		response := web.ClientResponse{}
+		endpoint := middleware.Env["EndpointAuthService"] + token
+		_, err := middleware.Client.DevMode().R().
+			SetHeader("X-API-Key", middleware.Env["X-API-Key"]).
+			SetResult(&response).
+			Get(endpoint)
+		helper.PanicIfError(err)
 
-	response := web.ClientResponse{}
-	endpoint := middleware.Env["EndpointAuthService"] + token
-	_, err := middleware.Client.R().
-		SetHeader("X-API-Key", middleware.Env["X-API-Key"]).
-		SetResult(&response).
-		Get(endpoint)
-	helper.PanicIfError(err)
-
-	if response.Code == 200 {
-		middleware.Handler.ServeHTTP(w, r)
+		if response.Code == 200 {
+			middleware.Handler.ServeHTTP(w, r)
+		} else {
+			w.WriteHeader(http.StatusUnauthorized)
+			helper.WriteToResponseBody(w, "Unauthorized!")
+		}
 	} else {
-		w.WriteHeader(http.StatusUnauthorized)
-		helper.WriteToResponseBody(w, "Unauthorized!")
+		middleware.Handler.ServeHTTP(w, r)
 	}
+
 }
