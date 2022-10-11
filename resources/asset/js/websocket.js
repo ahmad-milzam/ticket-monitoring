@@ -72,9 +72,11 @@ $(document).ready(function () {
   function ticket(parent, id, ticket) {
 
     if(ticket > 9) {
+      $(parent).removeClass("warning-count");
       $(parent).addClass("danger-count");
       $(id).text(ticket);
     }else if (ticket >= 6) {
+      $(parent).removeClass("danger-count");
       $(parent).addClass("warning-count");
       $(id).text(ticket);
     }else {
