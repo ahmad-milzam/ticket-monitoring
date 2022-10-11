@@ -78,6 +78,8 @@ $(document).ready(function () {
       $(parent).addClass("warning-count");
       $(id).text(ticket);
     }else {
+      $(parent).removeClass("danger-count");
+      $(parent).removeClass("warning-count");
       $(id).text(ticket);
     }
 
