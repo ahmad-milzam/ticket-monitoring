@@ -13,7 +13,7 @@ $(document).ready(function () {
     $(child).addClass(newColor);
   }
 
-  var socket = new WebSocket("wss://api.ngulik.my.id/wss");
+  var socket = new WebSocket("wss://monitoring.giostaging.com/wss");
 
   connectWebsocket(socket);
 
@@ -48,6 +48,7 @@ $(document).ready(function () {
       ticket("#wa-count-onhold","#onhold-whatsaap", data.total_tickets.whatsaap.on_hold);
 
       waiting(data.waiting_responses);
+      console.log(data);
       // checkInterval = setInterval(checkTicket, 5000);
     };
 
@@ -59,7 +60,7 @@ $(document).ready(function () {
       } else {
         // e.g. server process killed or network down
         // event.code is usually 1006 in this case
-        console.log("[close] Connection died");
+        alert("[close] Connection died");
       }
       connectWebsocket(socket);
     };
@@ -72,12 +73,16 @@ $(document).ready(function () {
   function ticket(parent, id, ticket) {
 
     if(ticket > 9) {
+      $(parent).removeClass("warning-count");
       $(parent).addClass("danger-count");
       $(id).text(ticket);
     }else if (ticket >= 6) {
+      $(parent).removeClass("danger-count");
       $(parent).addClass("warning-count");
       $(id).text(ticket);
     }else {
+      $(parent).removeClass("danger-count");
+      $(parent).removeClass("warning-count");
       $(id).text(ticket);
     }
 
@@ -102,6 +107,7 @@ $(document).ready(function () {
       let ticket = $("#" + waiting_response.id_ticket).detach();
 
       let difference = now - waiting_response.timestamp;
+      console.log(difference);
       if (difference >= 900) {
         move(".group-count-ticket-asap", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-asap");
@@ -144,6 +150,14 @@ $(document).ready(function () {
           colorTicket = "contain-count-wait";
         }
 
+        let subjectTicket = waiting_response.subject.replace(/<[^>]*>/g, '');
+        let countST = "";
+        if (subjectTicket.length > 25) {
+          countST = subjectTicket.substring(0, 25) + "...";
+        } else {
+          countST = subjectTicket;
+        }
+
         $(timeTicket).append(`
                 <div class="${colorTicket}" id="${waiting_response.id_ticket}">
                     <!-- <div class="content-wait"></div> -->
@@ -168,7 +182,7 @@ $(document).ready(function () {
                         </div>
                         <div class="subject-asap-ticket d-flex flex-wrap mt-1">
                             <div class="subject-asap">${
-                              waiting_response.subject.substring(0, 30) + "..."
+                              countST
                             }</div>
                         </div>
                     </div>

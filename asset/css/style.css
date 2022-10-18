@@ -235,19 +235,21 @@ html {
     align-items: center;
     font-size: 24px;
     font-weight: 500;
-    color: #FFFF;
+    color: #FEFFFF;
     line-height: 35px;
 }
 
 .status-asap {
     font-size: 20px;
-    color: #FFF;
+    color: #FEFFFF;
+    text-shadow: 2px 2px #000;
     font-weight: 400;
 }
 
 .id-asap-ticket {
     font-size: 20px;
-    color: #FFF;
+    color: #FEFFFF;
+    text-shadow: 2px 2px #000;
     font-weight: 500;
 }
 
@@ -259,18 +261,21 @@ html {
 
 .notif-asap {
     font-size: 18px;
-    color: #FFF;
+    color: #FEFFFF;
+    text-shadow: 2px 2px #000;
 }
 
 .time-asap {
     font-size: 24px;
     font-weight: 700;
-    color: #FFF;
+    color: #FEFFFF;
+    text-shadow: 2px 2px #000;
 }
 
 .subject-asap {
     font-size: 20px;
-    color: #FFF;
+    color: #FEFFFF;
+    text-shadow: 3px 3px #000;
     font-weight: 700;
 }
 
