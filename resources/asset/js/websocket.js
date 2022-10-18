@@ -48,6 +48,7 @@ $(document).ready(function () {
       ticket("#wa-count-onhold","#onhold-whatsaap", data.total_tickets.whatsaap.on_hold);
 
       waiting(data.waiting_responses);
+      console.log(data);
       // checkInterval = setInterval(checkTicket, 5000);
     };
 
@@ -106,6 +107,7 @@ $(document).ready(function () {
       let ticket = $("#" + waiting_response.id_ticket).detach();
 
       let difference = now - waiting_response.timestamp;
+      console.log(difference);
       if (difference >= 900) {
         move(".group-count-ticket-asap", ticket);
         changeColor("#" + waiting_response.id_ticket, "contain-count-asap");
@@ -172,7 +174,7 @@ $(document).ready(function () {
                         </div>
                         <div class="subject-asap-ticket d-flex flex-wrap mt-1">
                             <div class="subject-asap">${
-                              waiting_response.subject.substring(0, 30) + "..."
+                              waiting_response.subject.replace(/<[^>]*>/g, '').substring(0, 25) + "..."
                             }</div>
                         </div>
                     </div>
